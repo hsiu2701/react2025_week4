@@ -1,13 +1,13 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState } from 'react';
+import axios from 'axios';
 
 const API_BASE = import.meta.env.VITE_API_BASE;
 const API_PATH = import.meta.env.VITE_API_PATH;
 
-function Login(getProducts, setIsAuth) {
+function Login({ getProducts, setIsAuth }) {
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
 
   //表單輸入變更
@@ -26,13 +26,13 @@ function Login(getProducts, setIsAuth) {
       // console.log('登入成功', response.data);
       const { token, expired } = response.data;
       document.cookie = `hexToken=${token}; expires=${new Date(expired)};`;
-      axios.defaults.headers.common["Authorization"] = token;
+      axios.defaults.headers.common['Authorization'] = token;
       //取得產品列表
       getProducts();
       setIsAuth(true);
     } catch (error) {
       setIsAuth(false);
-      console.error("登入失敗", error.response);
+      console.error('登入失敗', error.response);
     }
   };
 
